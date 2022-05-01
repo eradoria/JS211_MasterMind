@@ -28,13 +28,42 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const generateHint = () =>  {
+const generateHint = (guess) =>  {
   // your code here
+  const hints = [];
+  const duplicates = [];
+  guess = guess.split('')
+  solution = solution.split('')
+
+  guess.forEach((guess, index) => {
+    if (guess[index] === solution[index]) {
+          hints.push("full");
+          duplicates.push(guess);
+    }
+  })
+
+  solution.forEach((guess,index) => {
+      if (!duplicates.includes(guess) && final.includes(guess)) {
+        hints.push("half");
+      }
+  })
+
+  return hints;
 }
 
 const mastermind = (guess) => {
   solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
+  tries = 0
+
+  while (tries >= 0 && tries < 10) {
+    tries++
+  }
+  if (guess === solution) {
+    console.log('You guessed it!')
+  } else{
+    generateHint(guess)
+  }
 }
 
 
