@@ -35,21 +35,24 @@ const generateHint = (guess) =>  {
   let duplicates = [];
   let guessarr = guess.split('')
   let solutionarr = solution.split('')
+  // console.log(guessarr)
 
   guessarr.forEach((guess,index) => {
-    if (guessarr === solutionarr) {
-          hints.push('full');
+    if (guessarr[index] === solutionarr[index]) {
+          hints.push("full");
           duplicates.push(guess);
     }
-  }) 
-  
+    // console.log(guesstest)
+    //  console.log(solutionarr)
+  });
+  // console.log(hints)
  
   guessarr.forEach((guess,index) => {
       if (!duplicates.includes(guess) && solution.includes(guess)) {
         hints.push("half");
       }
   })
-   console.log(hints)
+  // console.log(hints)
   return hints;
 }
 
@@ -57,18 +60,17 @@ const mastermind = (guess) => {
  solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
    let attempts = 0;
-
+  // console.log(board)
 
   if (guess === solution) {
     console.log('You guessed it!')
-  } else{
-    generateHint(guess);
-    attempts += 1;
-      if ( attempts >= 10) {
-         console.log ("sorry game over");
-       return;
-      }
-      
+  } else if (attempts === 10) {
+    console.log ("sorry game over");
+    board = []
+    
+ } else{
+    ('you have' + console.log(generateHint(guess)) );
+    attempts++
     }
 console.log (attempts);
 }
