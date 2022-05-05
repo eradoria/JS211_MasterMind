@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('assert');
+const { Console } = require('console');
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -30,40 +31,46 @@ const getRandomInt = (min, max) => {
 
 const generateHint = (guess) =>  {
   // your code here
-  const hints = [];
-  const duplicates = [];
-  guess = guess.split('')
-  solution = solution.split('')
+  let hints = [];
+  let duplicates = [];
+  let guessarr = guess.split('')
+  let solutionarr = solution.split('')
 
-  guess.forEach((guess, index) => {
-    if (guess[index] === solution[index]) {
-          hints.push("full");
+  guessarr.forEach((guess,index) => {
+    if (guessarr === solutionarr) {
+          hints.push('full');
           duplicates.push(guess);
     }
-  })
-
-  solution.forEach((guess,index) => {
-      if (!duplicates.includes(guess) && final.includes(guess)) {
+  }) 
+  
+ 
+  guessarr.forEach((guess,index) => {
+      if (!duplicates.includes(guess) && solution.includes(guess)) {
         hints.push("half");
       }
   })
-
+   console.log(hints)
   return hints;
 }
 
 const mastermind = (guess) => {
-  solution = 'abcd'; // Comment this out to generate a random solution
+ solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
-  tries = 0
+   let attempts = 0;
 
-  while (tries >= 0 && tries < 10) {
-    tries++
-  }
+
   if (guess === solution) {
     console.log('You guessed it!')
   } else{
-    generateHint(guess)
-  }
+    generateHint(guess);
+    attempts += 1;
+      if ( attempts >= 10) {
+         console.log ("sorry game over");
+       return;
+      }
+      
+    }
+console.log (attempts);
 }
 
 
