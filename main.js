@@ -59,20 +59,20 @@ const generateHint = (guess) =>  {
 const mastermind = (guess) => {
  solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
-   let attempts = 0;
+   
   // console.log(board)
 
   if (guess === solution) {
     console.log('You guessed it!')
-  } else if (attempts === 10) {
+    board = []
+  } else if (board.length === 10) {
     console.log ("sorry game over");
     board = []
-    
  } else{
     ('you have' + console.log(generateHint(guess)) );
-    attempts++
+    board.push(guess)
     }
-console.log (attempts);
+
 }
 
 
