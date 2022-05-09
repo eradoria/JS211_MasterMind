@@ -33,6 +33,8 @@ const generateHint = (guess) =>  {
   // your code here
   let hints = [];
   let duplicates = [];
+  let fullhint = 0
+  let duplicatehint = 0
   let guessarr = guess.split('')
   let solutionarr = solution.split('')
   // console.log(guessarr)
@@ -40,6 +42,9 @@ const generateHint = (guess) =>  {
   guessarr.forEach((guess,index) => {
     if (guessarr[index] === solutionarr[index]) {
           hints.push("full");
+          fullhint++;
+          guessarr[index] = 1;
+          solutionarr[index] = 0;
           duplicates.push(guess);
     }
     // console.log(guesstest)
@@ -48,12 +53,20 @@ const generateHint = (guess) =>  {
   // console.log(hints)
  
   guessarr.forEach((guess,index) => {
-      if (!duplicates.includes(guess) && solution.includes(guess)) {
-        hints.push("half");
-      }
+      // if (!duplicates.includes(guess) && solution.includes(guess)) {
+      //   hints.push("half");
+      //   duplicatehint++;
+      // }
+      solutionarr.forEach((solution,i) =>{
+        if (guess === solution) {
+          duplicatehint++;
+          guessarr[index] = 1;
+          solutionarr[i] = 0;
+        }
+      })
   })
   // console.log(hints)
-  return hints;
+  return fullhint + "-" + duplicatehint ;
 }
 
 const mastermind = (guess) => {
@@ -65,6 +78,7 @@ const mastermind = (guess) => {
   if (guess === solution) {
     console.log('You guessed it!')
     board = []
+    return 'You guessed it!'
   } else if (board.length === 10) {
     console.log ("sorry game over");
     board = []
